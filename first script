@@ -1,0 +1,17 @@
+import bpy
+from bpy import context
+import numpy as np
+
+# generate Data to be plotted
+# should resemble a "star catalogue" with the following data:
+# x-coordinate, y-coordinate, z-coordinate, mass,     radius,  brightness, color
+# (-100, 100),  (-100,100),   (-100,100),   (1,1000), (1,300), (0, 15),    ['O', 'B', 'A', 'F', 'G', 'K', 'M']
+
+Nstars = 100
+X = np.normal(loc=0, scale=25, size=Nstars)
+Y = np.normal(loc=0, scale=25, size=Nstars)
+Z = np.normal(loc=0, scale=25, size=Nstars)
+mass = np.choice(np.linspace(1, 1000, num=300), size=Nstars)
+radius = np.choice(np.linspace(1, 300, num=300), size=Nstars)
+brightness = np.choice(np.linspace(0, 15, num=100), size=Nstars)
+color = np.choice(['O', 'B', 'A', 'F', 'G', 'K', 'M'], size=Nstars)

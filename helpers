@@ -1,0 +1,24 @@
+# copied from: http://blenderscripting.blogspot.de/2012/03/deleting-objects-from-scene.html
+
+import bpy
+
+def cleanup_meshes():
+    #unselect everything
+    # <insert code here, this can vary depending on your situation> 
+    # bpy.ops.object.select_all()
+    
+    # gather list of items of interest.
+    candidate_list = [item.name for item in bpy.data.objects if item.type == "MESH"]
+ 
+    # select them only.
+    for object_name in candidate_list:
+        bpy.data.objects[object_name].select = True
+    
+    # remove all selected.
+    bpy.ops.object.delete()
+    
+    # remove the meshes, they have no users anymore.
+    for item in bpy.data.meshes:
+        bpy.data.meshes.remove(item)
+    
+    print(str(__name__) + ':','CLEANUP DONE')
